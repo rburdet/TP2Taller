@@ -1,0 +1,4 @@
+./tp simple in_simple
+./tp espiral in_all_errors
+./tp spiral in_spiral
+./tp asimov in_asimov

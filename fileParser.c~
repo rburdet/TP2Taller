@@ -1,0 +1,61 @@
+#include "fileParser.h"
+
+void createFileParser(TFileParser* this,char* inFile,int argc){
+	if (argc!=3)
+		this->fp = stdin;
+	else {
+		this->fp = fopen(inFile, "r");
+	}
+}
+
+void destroyFileParser(TFileParser* this){
+	fclose(this->fp);
+}
+
+void getSizes(TFileParser* this){
+	//El archivo ya esta abierto
+	uint x,y;
+	fscanf(this->fp, "%uX%u", &x, &y);
+	this->dimX = x; 
+	this->dimY = y;
+}
+int getX(TFileParser* this){
+	return this->dimX
+}
+//void getSizes(char* inFile,int argc,unsigned * dimX, unsigned * dimY){
+//	FILE *fp;
+//	unsigned j,i,x,y,endOfSize;
+//
+//	i=0;
+//	if (argc!=3)
+//		{printf("entre aca \n");
+//		fp = stdin;
+//		}
+//	else {
+//		fp= fopen(inFile, "r");
+//		if (fp == NULL)
+//			return ;
+//	}
+//	fscanf(fp,"%uX%u",&x,&y);
+//	endOfSize = ftell(fp);
+//	printf("la posicion del cursor es : %d\n",endOfSize);
+//	while ( fgetc(fp) != '\n' )
+//	{
+//		i++;
+//		printf(" i : %u\n",i);
+//	}
+//	fseek(fp, endOfSize , SEEK_SET);
+//	char buffer[i];
+//	fscanf(fp,"%s", buffer);
+//	for (j=0; j<i-1 ; j++)
+//		printf("%c, ",buffer[j]);
+//	fseek(fp,endOfSize + i,SEEK_SET);
+//	fscanf(fp,"%uX%u",&x,&y);
+//	fclose(fp);
+//	*dimX = x;
+//	*dimY = y;
+//}
+//
+//void getLine(char* inFile, int argc){
+//	return;
+//}

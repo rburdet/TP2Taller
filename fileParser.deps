@@ -1,0 +1,3 @@
+fileParser.o fileParser.deps : fileParser.c fileParser.h
+
+fileParser.h:

@@ -1,0 +1,111 @@
+#include "myMatrix.h"
+
+TMatrix* createMatrix(unsigned x,unsigned y){
+	TMatrix* this = (TMatrix*) calloc(1,sizeof(TMatrix));
+	this->matrix = (char**)malloc(sizeof(char*)*x);
+	unsigned i;
+	for (i=0; i< x ; i++)
+		this->matrix[i] = malloc(sizeof(char)*y);
+		//printf(" %u,%u   ",x,y);
+	this->dimX=x;
+	this->dimY=y;
+	return this;
+}
+
+void destroyMatrix(TMatrix* this){
+	unsigned i;
+	for ( i=0 ; i < this->dimX ; i++)
+		free(this->matrix[i]);
+	free(this->matrix);
+	free(this);
+}
+
+void fillMatrix(TMatrix* this,char* fileName){
+	FILE* fp = fopen(fileName,"r");
+	unsigned i,j,fileSize;
+	char c;
+	fseek(fp,0L,SEEK_END);
+	fileSize = ftell(fp);
+	fseek(fp,0L,SEEK_SET);
+	if (fileSize+1 >= (this->dimX * this->dimY)){
+		for (i=0 ; i < this->dimX ; i++){
+			for ( j = 0 ; j < this->dimY ; j++){
+				fscanf(fp,"%c",&c);
+				this->matrix[i][j] = c;
+			}
+		}
+	}else{
+		roundRobin(this,fp);
+	}
+	fclose(fp);
+	//Imprimo matrizz
+	for (i=0 ; i < this->dimX ; i++){
+		for ( j = 0 ; j < this->dimY ; j++){
+			printf(" %c ",this->matrix[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void roundRobin(TMatrix* this,FILE* fp){
+	unsigned i,j,count;
+	for(count=0; count < (this->dimX * this->dimY); count++){
+		for (i=0 ; i < this->dimX ; i++){
+			for ( j = 0 ; j < this->dimY ; j++){
+				if (fscanf(fp,"%c",this->matrix[i][j])!=1);
+					fseek(fp,0L,SEEK_SET);
+			}
+		}	
+	}
+}
+
+void moveThrough(TMatrix* this,TList* movements,TFileParser* parser){
+	unsigned it;
+	unsigned j=0;
+	unsigned i=0;
+	char c,error;
+	TNode* node;
+	for (it=0 ; it<(parser->bufferSize) ; it++){
+	error=0;
+		switch(parser->directionsBuffer[it]){
+			case 'R':{
+				if (j == this->dimY-1)
+					error = 1;
+				else{
+					j++; 
+					c = this->matrix[i][j];
+					printf("%c",c);
+				}
+				break;}
+			case 'L':{
+				if (j == 0)
+					error = 1;
+				else{
+					j--;
+					c = this->matrix[i][j];
+					printf("%c",c);
+				}
+				break;}
+			case 'U':{
+				if (i==0)
+					error = 1;
+				else{
+					i--;
+					c = this->matrix[i][j];
+					printf("%c",c);
+				}
+				break;}
+			case 'D':{
+				if (i== this->dimX-1)
+					error = 1;
+				else{
+					i++;
+					c = this->matrix[i][j];
+					printf("%c",c);
+				}
+				break;}
+		}
+		TNode* auxNode = createNode(c,error);
+		addNode(movements,auxNode);
+	}
+}
