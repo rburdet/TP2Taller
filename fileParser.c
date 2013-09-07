@@ -4,12 +4,11 @@
 
 TFileParser* createFileParser(char* inFile,int argc){
 	TFileParser* this = (TFileParser*)calloc(1,sizeof(TFileParser));
-	this->directionsBuffer = NULL ;
+	this->directionsBuffer = NULL;
 	if (argc!=3)
 		this->fp = stdin;
-	else {
+	else
 		this->fp = fopen(inFile, "r");
-	}
 	return this;
 }
 
@@ -38,7 +37,6 @@ uint getBufferSize(TFileParser* this){
 	return (this->bufferSize);
 }
 
-//Teniendo el cursor despues de los tamanios, necesito saber cuantas letras tengo
 char readALine(TFileParser* this){
 	unsigned char c;
 	getSizes(this);

@@ -4,7 +4,7 @@
 #include "myMatrix.h"
 
 int main(int argc, char *argv[]){
-	TList* aList ;
+	TList* aList;
 	createList(&aList);
 	TMatrix* aMatrix;
 	TFileParser* aFileParser = createFileParser(argv[2],argc);
