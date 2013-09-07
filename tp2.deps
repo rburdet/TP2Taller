@@ -1,9 +1,0 @@
-tp2.o tp2.deps : tp2.c fileParser.h myList.h myNode.h myMatrix.h
-
-fileParser.h:
-
-myList.h:
-
-myNode.h:
-
-myMatrix.h:

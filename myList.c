@@ -10,6 +10,13 @@ TList* createList(){
 
 void destroyList(TList* this){
 	//Llamo al destruir del nodo para luego destruir todos los nodos
+	TNode* nodeToDestroy;
+	this->actual=this->first;
+	while(getNext(this->actual) != NULL){
+		nodeToDestroy=this->actual;
+		destroyNode(nodeToDestroy);
+		this->actual=getNext(this->actual);
+	}
 	destroyNode(this->first);
 	free(this->first);
 }
@@ -27,5 +34,15 @@ void addNode(TList* this, TNode* node){
 	else{
 		(this->actual)->next = node;
 		this->actual = node;
+	}
+}
+
+void printMovements(TList* this){
+	//El primero
+	this->actual=this->first;
+	printf("%s",this->actual->info);
+	//Los del medio
+	while ((this->actual=getNext(this->actual))!=NULL){
+		printf("%s",this->actual->info);
 	}
 }

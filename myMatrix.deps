@@ -1,9 +1,0 @@
-myMatrix.o myMatrix.deps : myMatrix.c myMatrix.h fileParser.h myList.h myNode.h
-
-myMatrix.h:
-
-fileParser.h:
-
-myList.h:
-
-myNode.h:

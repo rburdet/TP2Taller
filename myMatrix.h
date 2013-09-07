@@ -15,6 +15,6 @@ TMatrix* createMatrix(unsigned x,unsigned y);
 void destroyMatrix(TMatrix* this);
 void roundRobin(TMatrix* this,FILE* fp);
 void fillMatrix(TMatrix* this,char* fileName);
-void moveThrough(TMatrix* this,TList* movements,TFileParser* parser);
+unsigned moveThrough(TMatrix* this,TList* movements,TFileParser* parser);
 
 #endif

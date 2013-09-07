@@ -1,3 +1,0 @@
-myNode.o myNode.deps : myNode.c myNode.h
-
-myNode.h:

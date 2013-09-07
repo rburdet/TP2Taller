@@ -1,5 +1,0 @@
-myList.o myList.deps : myList.c myList.h myNode.h
-
-myList.h:
-
-myNode.h:

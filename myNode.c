@@ -5,21 +5,17 @@
 
 TNode* createNode(char inf,char error){
 	TNode* this=malloc(sizeof(TNode));
-	//printf("elputo inf es : %c\n",inf);
 	if (!error){
-		//printf(" entre en DULR\n");
-		this->info=malloc(sizeof(char));
+		this->info=calloc(1,sizeof(char)+1);
 		this->info[0]=inf;
 		this->numberOfMovs++;
 	}
 	else{
-		//printf("no entre en DULR\n");
-		this->info=malloc(sizeof(char)*3);
+		this->info=malloc(sizeof(char)*4);
 		char* error="[E]";
 		strcpy(this->info,error);
 	}
 	this->next=NULL;
-	printf(" dentro del nodo:%s\n",this->info);
 	return this;
 }
 

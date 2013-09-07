@@ -43,7 +43,7 @@ char readALine(TFileParser* this){
 	getSizes(this);
 	uint i=0;
 	uint endOfSizes = ftell(this->fp)+1;	//Me paro en la primer letra
-	while ( c = fgetc(this->fp) != '\n' ){
+	while ( (c = fgetc(this->fp)) != '\n' ){
 		if (feof(this->fp))
 			return 1;
 		else
