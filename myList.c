@@ -30,8 +30,7 @@ void addNode(TList* this, TNode* node){
 	if (this->first == NULL){
 		this->first=node;
 		this->actual=node;
-	}
-	else{
+	}else{
 		(this->actual)->next = node;
 		this->actual = node;
 	}

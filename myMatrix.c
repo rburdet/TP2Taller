@@ -28,7 +28,7 @@ void fillMatrix(TMatrix* this,char* fileName){
 	fseek(fp,0L,SEEK_SET);
 	if (fileSize+1 >= (this->dimX * this->dimY)){
 		for (i=0 ; i < this->dimX ; i++){
-			for ( j = 0 ; j < this->dimY ; j++){
+			for ( j = 0 ; j < this->dimY ; j++ ){
 				fscanf(fp,"%c",&c);
 				this->matrix[i][j] = c;
 			}
@@ -50,8 +50,8 @@ void roundRobin(TMatrix* this,FILE* fp){
 	unsigned i,j,count;
 	char c;
 	for(count=0; count < (this->dimX * this->dimY); count++){
-		for (i=0 ; i < this->dimX ; i++){
-			for ( j = 0 ; j < this->dimY ; j++){
+		for ( i=0 ; i < this->dimX ; i++ ){
+			for ( j = 0 ; j < this->dimY ; j++ ){
 				c = this->matrix[i][j];
 				if ( (fscanf(fp,"%c",&c)) !=1 );
 					fseek(fp,0L,SEEK_SET);
@@ -68,44 +68,44 @@ unsigned moveThrough(TMatrix* this,TList* movements,TFileParser* parser){
 	error=0;
 	aux=parser->directionsBuffer[it];
 		switch(aux){
-			case 'R':{
-				if (j == (this->dimY)-1)
+			case 'R':
+				if (j == (this->dimY)-1){
 					error = 1;
-				else{
+				 }else{
 					j++; 
 					movesMade++;
 					c = this->matrix[i][j];
 				}
-				break;}
-			case 'L':{
-				if (j == 0)
+				break;
+			case 'L':
+				if (j == 0){
 					error = 1;
-				else{
+				}else{
 					j--;
 					movesMade++;
 					c = this->matrix[i][j];
 				}
-				break;}
-			case 'U':{
-				if (i==0)
+				break;
+			case 'U':
+				if (i==0){
 					error = 1;
-				else{
+				}else{
 					i--;
 					movesMade++;
 					c = this->matrix[i][j];
 				}
-				break;}
-			case 'D':{
-				if (i== (this->dimX)-1)
+				break;
+			case 'D':
+				if (i== (this->dimX)-1){
 					error = 1;
-				else{
+				}else{
 					i++;
 					movesMade++;
 					c = this->matrix[i][j];
 				}
-				break;}
+				break;
 		}
-		if ( (aux=='D') || (aux == 'U') || (aux == 'R') || (aux == 'L')){
+		if ( (aux=='D') || (aux == 'U') || (aux == 'R') || (aux == 'L') ){
 			TNode* auxNode = createNode(c,error);
 			addNode(movements,auxNode);
 		}
