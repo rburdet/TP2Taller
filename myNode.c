@@ -17,8 +17,9 @@ TNode* createNode(char inf,char error){
 		//generaba un warning [-Wsizeof-pointer-memaccess] 
 		unsigned aux = sizeof(char)*4;
 		this->info=malloc(sizeof(char)*4);
-		char* error="[E]";
-		snprintf(this->info,aux,error);
+		const char* error="[E]";
+		if (!snprintf(this->info,aux,"%s",error))
+			return NULL;
 	}
 	this->next=NULL;
 	return this;

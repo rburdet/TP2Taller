@@ -21,7 +21,7 @@ extension = c
 #fuentes = entrada.cpp
 
 # Si usa funciones de math.h, descomentá (quitale el '#' a) la siguiente línea.
-#math = si
+math = si
 
 # Si usa pthreads, descomentá (quitale el '#' a) la siguiente línea.
 #pthreads = si
@@ -43,7 +43,7 @@ extension = c
 ###########################
 
 # Opciones para el compilador C/C++ en modo ansi.
-CFLAGS = -Wall -pedantic -pedantic-errors
+CFLAGS = -Wall -Werror -pedantic -pedantic-errors
 
 # Para que explote lo mas posible
 CFLAGS += -O3 -DNDEBUG

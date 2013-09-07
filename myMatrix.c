@@ -29,8 +29,10 @@ void fillMatrix(TMatrix* this,char* fileName){
 	if (fileSize+1 >= (this->dimX * this->dimY)){
 		for (i=0 ; i < this->dimX ; i++){
 			for ( j = 0 ; j < this->dimY ; j++ ){
-				fscanf(fp,"%c",&c);
-				this->matrix[i][j] = c;
+				if (fscanf(fp,"%c",&c))
+					this->matrix[i][j] = c;
+				else
+					break;
 			}
 		}
 	}else{

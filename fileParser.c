@@ -26,9 +26,12 @@ void getSizes(TFileParser* this){
 	//El archivo ya esta abierto
 	uint x,y;
 	char c;
-	fscanf(this->fp, "%u%c%u", &x,&c,&y);
-	this->dimX = x; 
-	this->dimY = y;
+	if (fscanf(this->fp, "%u%c%u", &x,&c,&y)){
+		this->dimX = x; 
+		this->dimY = y;
+	}else{
+		return;
+	}
 }
 uint getX(TFileParser* this){
 	return (this->dimX);
@@ -58,8 +61,10 @@ char readALine(TFileParser* this){
 	this->bufferSize=i-1;
 	this->directionsBuffer=malloc(sizeof(char)*i);
 	fseek(this->fp, endOfSizes, SEEK_SET);
-	fscanf(this->fp, "%s", this->directionsBuffer);
-	return 0;
+	if (fscanf(this->fp, "%s", this->directionsBuffer))
+		return 0;
+	else
+		return 1;
 }
 
 char* getDirections(TFileParser* this){

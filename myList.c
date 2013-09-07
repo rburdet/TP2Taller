@@ -12,14 +12,12 @@ void destroyList(TList* this){
 	TNode* nodeToDestroy;
 	this->actual=this->first;
 	nodeToDestroy=getNext(this->actual);
-	//destroyNode(this->actual);
 	while(nodeToDestroy != NULL){
 		this->actual=getNext(nodeToDestroy);
 		destroyNode(nodeToDestroy);
 		nodeToDestroy=this->actual;
 	}
 	destroyNode(this->first);
-	//free(this->first);
 	free(this);
 }
 
@@ -27,7 +25,6 @@ TNode* getActual(TList* this){
 	return (this->actual);
 }
 
-//NO SE QUE CARAJOS HACER ACA !!
 void addNode(TList* this, TNode* node){
 	if (this->first == NULL){
 		this->first=node;
