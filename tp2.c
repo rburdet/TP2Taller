@@ -5,10 +5,9 @@
 
 int main(int argc, char *argv[]){
 	TList* aList;
-	createList(&aList);
+	//createList(aList);
 	TMatrix* aMatrix;
 	TFileParser* aFileParser = createFileParser(argv[2],argc);
-	rintMovements(aList);
 	while (!readALine(aFileParser)){
 		aList = createList();
 		aMatrix =createMatrix(getX(aFileParser),getY(aFileParser));
