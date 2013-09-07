@@ -21,7 +21,8 @@ void destroyFileParser(TFileParser* this){
 void getSizes(TFileParser* this){
 	//El archivo ya esta abierto
 	uint x,y;
-	fscanf(this->fp, "%uX%u", &x, &y);
+	char c;
+	fscanf(this->fp, "%u%c%u", &x,&c,&y);
 	this->dimX = x; 
 	this->dimY = y;
 }

@@ -2,10 +2,7 @@
 #include "fileParser.h"
 #include "myList.h"
 #include "myMatrix.h"
-/*
- *  al parecer llena bien la matriz
- *  TODO: Recorridos
- * */
+
 int main(int argc, char *argv[]){
 	TList* aList ;
 	createList(&aList);
@@ -25,7 +22,7 @@ int main(int argc, char *argv[]){
 		printf("%u ",moveThrough(aMatrix,aList,aFileParser));
 		printMovements(aList);
 		destroyMatrix(aMatrix);
-		//destroyList(aList);
+		//TODO: destroyList(aList);
 		printf("\n");
 	}
 	destroyFileParser(aFileParser);
