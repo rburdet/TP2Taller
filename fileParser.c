@@ -17,6 +17,11 @@ void destroyFileParser(TFileParser* this){
 	free(this);
 }
 
+void destroyALine(TFileParser* this){
+	if (this->directionsBuffer != NULL)
+		free(this->directionsBuffer);
+}
+
 void getSizes(TFileParser* this){
 	//El archivo ya esta abierto
 	uint x,y;
@@ -40,6 +45,8 @@ uint getBufferSize(TFileParser* this){
 char readALine(TFileParser* this){
 	unsigned char c;
 	getSizes(this);
+	if (this->directionsBuffer != NULL);
+		free(this->directionsBuffer);
 	uint i=0;
 	uint endOfSizes = ftell(this->fp)+1;	//Me paro en la primer letra
 	while ( (c = fgetc(this->fp)) != '\n' ){

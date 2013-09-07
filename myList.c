@@ -9,16 +9,18 @@ TList* createList(){
 }
 
 void destroyList(TList* this){
-	//Llamo al destruir del nodo para luego destruir todos los nodos
 	TNode* nodeToDestroy;
 	this->actual=this->first;
-	while(getNext(this->actual) != NULL){
-		nodeToDestroy=this->actual;
+	nodeToDestroy=getNext(this->actual);
+	//destroyNode(this->actual);
+	while(nodeToDestroy != NULL){
+		this->actual=getNext(nodeToDestroy);
 		destroyNode(nodeToDestroy);
-		this->actual=getNext(this->actual);
+		nodeToDestroy=this->actual;
 	}
 	destroyNode(this->first);
-	free(this->first);
+	//free(this->first);
+	free(this);
 }
 
 TNode* getActual(TList* this){

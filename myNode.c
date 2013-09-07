@@ -29,10 +29,6 @@ TNode* getNext(TNode* this){
 }
 
 void destroyNode(TNode* this){
-	if (getNext(this)==NULL){
+		free(this->info);
 		free(this);
-	}else{
-		this->next=getNext(this);
-		destroyNode(this);
-	}
 }

@@ -22,8 +22,9 @@ int main(int argc, char *argv[]){
 		printf("%u ",moveThrough(aMatrix,aList,aFileParser));
 		printMovements(aList);
 		destroyMatrix(aMatrix);
-		//TODO: destroyList(aList);
+		destroyList(aList);
 		printf("\n");
+		//destroyALine(aFileParser);
 	}
 	destroyFileParser(aFileParser);
 return 0;

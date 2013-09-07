@@ -22,5 +22,6 @@ uint getBufferSize(TFileParser* this);
 char* getDirections(TFileParser* this);
 //TODO: liberar memoria del directionsBUffer en el destructor
 void destroyFileParser(TFileParser* this);
+void destroyALine(TFileParser* this);
 
 #endif
