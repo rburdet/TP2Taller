@@ -1,0 +1,66 @@
+\documentclass[a4paper,10pt]{scrartcl}
+%\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[english,activeacute]{babel}
+\usepackage{graphicx}
+
+
+\title{Ejercicio 2}
+\subtitle{Recorrido de matrices}
+\author{Rodrigo Burdet}
+\date{}
+
+\pdfinfo{%
+  /Title    ()
+  /Author   ()
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\maketitle
+Para la resolución de este ejercicio se usa una matriz dinámica, cuyas dimensiones son tomadas de un archivo pasado como parámetro, o en caso de no existir dicho archivo, desde STDIN. 
+Se reconocieron 3 tipos distintos de TDAs, ellos son:
+
+\begin{center}
+    \begin{tabular}{| l | l | l |}
+\hline
+TDA & Header (.h) & Source (.c) \\ \hline
+Matriz 	& myMatrix.h & myMatrix.c \\ \hline
+Parseador & fileParser.h & fileParser.c \\ \hline
+Lista	& myList.h & myList.c  \\ \hline
+
+    \end{tabular}
+\end{center}
+
+La implementación de lista se hizo usando otro TDA:
+\begin{center}
+    \begin{tabular}{| l | l | l |}
+\hline
+TDA & Header (.h) & Source (.c) \\ \hline
+Nodo 	& myNode.h & myNode.c \\ \hline
+    \end{tabular}
+\end{center}
+
+La lista contiene un puntero al primer nodo y un puntero al nodo “actual” (llamado así para realizar operaciones más fácilmente).
+El parseador contiene las dimensiones de la matriz sacadas desde el archivo, un arreglo (también dinámico) para obtener los posibles movimientos desde el archivo y el tamaño del mismo para saber cuándo dejar de moverse sobre la matriz.
+En este ejercicio, al tener en cada línea del archivo, distintos tamaños de matriz, se optó por crear la matriz, hacer el procesamiento necesario y destruirla al final de la línea. El proceso se repite para cada línea del archivo. Se eligió hacerlo de esta forma porque la probabilidad de que dos matrices sean del mismo tamaño (o parecido) son chicas, lo cual “reallocar” memoria no me parecio meritorio.
+
+Los archivos de entrada tiene formato  $a$X$b$ siendo a y b numeros naturales. Me encontré con el problema que el archivo de entrada \verb in_all_errors  el formato era $a$x$b$, por lo que opté por aceptar una cadena de la forma $a$caracteres$b$, con cualquier valor de carácter posible.
+Al recorrer la matriz para imprimir los movimientos se optó porque la matriz cree nodos y estos sean agregados por la lista de movimientos, si bien esta no es la solución más “bonita” (en términos de la abstracción de datos) no quise hacer una función o un TDA que sólo se encargue de manejar otros TDAs.
+
+
+% \includegraphics{tp2.jpg}
+\begin{figure}[hb]
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{tp2.jpg}
+  \caption{Diagrama de flujo}
+\end{figure}
+
+\end{document}
